@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Alumni Form</title>
+    </head>
+    <body>
+        <form id="alumniForm">
+            Name: <input type="text" id="name"><br>
+            DOB: <input type="date" id="dob"><br>
+            Email: <input type="email" id="email"><br>
+            Hobbies: <input type="checkbox">Reading <input type="checkbox">Sports<br>
+            Branch: <input type="radio" name="branch">CS <input type="radio" name="branch">IT<br>
+            Password: <input type="password" id="password"><br>
+            <button type="button" onclick="validateForm()">Submit</button>
+        </form>
+
+        <script>
+            function validateForm() {
+                const name = document.getElementById('name').value;
+                const dob = new Date(document.getElementById('dob').value);
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (!name || !dob || !email || !password) {
+                    alert('All fields are required!');
+                    return;
+                }
+
+                const age = new Date().getFullYear() - dob.getFullYear();
+                if (age < 22) {
+                    alert('You must be at least 22 year old.');
+                    return;
+                }
+
+                const emailPattern = /\S+@\S+\.\S+/;
+                if (!emailPattern.test(email)) {
+                    alert('Invalid email format!');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters long.');
+                    return;
+                }
+
+                alert('Form submitted successfully!');
+            }
+        </script>
+    </body>
+</html>
